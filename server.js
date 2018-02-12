@@ -1,22 +1,19 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const multer = require('multer');
+const autoReap = require('multer-autoreap');
 const app = express();
 const upload = multer({ dest: 'uploads'});
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('client'));
-
-
-if(process.env.NODE_ENV !== 'production') {
-	require('dotenv').config();
-}
+app.use(autoReap);
 
 app.post('/', upload.any(), (req,res) => {
-  console.log(req.files, req.body, req.query);
-  res.send(req.files);
+  res.send({ size: req.files[0].size });
 });
 
+app.get('*', (req, res) => res.redirect('/'));
 
 app.listen(process.env.PORT || 3000);
