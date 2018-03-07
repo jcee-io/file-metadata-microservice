@@ -1,6 +1,6 @@
 # File Metadata Microservice
 
-LIVE LINK: https://dashboard.heroku.com/apps/sleepy-wave-24750
+LIVE LINK: https://sleepy-wave-24750.herokuapp.com/
 
 This is simply a file input that returns the size of your file in a JSON response
 
